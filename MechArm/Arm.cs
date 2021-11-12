@@ -20,10 +20,10 @@ namespace MechArm
 
         public void AddPoint(Vector2f pos)
         {
-            if (points.Count > 0)
-                points.Add(new Point(pos, points[points.Count - 1]));
-            else
+            if (points.Count == 0)
                 points.Add(new Point(pos));
+            else if (pos != points[points.Count - 1]?.position)
+                points.Add(new Point(pos, points[points.Count - 1]));
         }
 
         public void Draw(RenderWindow rw)
@@ -56,6 +56,7 @@ namespace MechArm
 
 
                 lastPos = points[0].position;
+
 
                 for (int i = 1; i <= points.Count() - 1; i++)
                 {
